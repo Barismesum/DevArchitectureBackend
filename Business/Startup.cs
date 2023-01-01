@@ -130,6 +130,12 @@ namespace Business
             services.AddTransient<IGroupRepository, GroupRepository>();
             services.AddTransient<IGroupClaimRepository, GroupClaimRepository>();
             services.AddTransient<IUserGroupRepository, UserGroupRepository>();
+            services.AddTransient<IConsumerRepository, ConsumerRepository>();
+            services.AddTransient<IConsumerRolesRepository, ConsumerRolesRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IStorageRepository, StorageRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddDbContext<ProjectDbContext,MsDbContext>();
 
             services.AddSingleton<MongoDbContextBase, MongoDbContext>();
@@ -151,6 +157,12 @@ namespace Business
             services.AddTransient<IOperationClaimRepository, OperationClaimRepository>();
             services.AddTransient<IGroupRepository, GroupRepository>();
             services.AddTransient<IGroupClaimRepository, GroupClaimRepository>();
+            services.AddTransient<IConsumerRepository, ConsumerRepository>();
+            services.AddTransient<IConsumerRolesRepository, ConsumerRolesRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IStorageRepository, StorageRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
 
             services.AddDbContext<ProjectDbContext, MsDbContext>();
