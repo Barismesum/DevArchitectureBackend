@@ -21,6 +21,7 @@ namespace Business.Handlers.Consumers.Commands
             public int Gender { get; set; }
             public string Password { get; set; }
             public int RolId { get; set; }
+            public bool isDeleted { get; set; }
 
 
 
@@ -50,6 +51,7 @@ namespace Business.Handlers.Consumers.Commands
                         MobilePhones = request.MobilePhones,
                         Gender = request.Gender,
                         RolId = request.RolId,
+                        isDeleted=false,
                     };
 
                     _consumerRepository.Add(consumer);

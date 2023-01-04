@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Entities.Concrete
 {
-    public class Consumer:IEntity
+    public class Consumer:BaseEntity
     {
       
         public int ConsumerId { get; set; }
