@@ -21,9 +21,10 @@ namespace Core.Entities.Concrete
         public DateTime BirthDate { get; set; }
         public int Gender { get; set; }
         public DateTime RecordDate { get; set; }
+        public DateTime UpdateContactDate { get; set; } 
         public string Address { get; set; }
         public string Notes { get; set; }
-        public DateTime UpdateContactDate { get; set; }
+       
 
         /// <summary>
         /// This is required when encoding token. Not in db. The default is Person.

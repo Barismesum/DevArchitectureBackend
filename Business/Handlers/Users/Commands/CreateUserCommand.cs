@@ -27,7 +27,7 @@ namespace Business.Handlers.Users.Commands
         public string Address { get; set; }
         public string Notes { get; set; }
         public DateTime UpdateContactDate { get; set; }
-        public string Password { get; set; }
+        public int Password { get; set; }
 
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, IResult>
@@ -50,6 +50,7 @@ namespace Business.Handlers.Users.Commands
                 {
                     return new ErrorResult(Messages.NameAlreadyExist);
                 }
+               
 
                 var user = new User
                 {
