@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entities.Concrete
 {
-    public class Storage:IEntity
+    public class Storage:BaseEntity
     {
         public int ProductId { get; set; }
         public int ProductStock { get; set; }

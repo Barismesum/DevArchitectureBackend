@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations.Ms
 {
     [DbContext(typeof(MsDbContext))]
-    [Migration("20230104102302_InitialCreate")]
+    [Migration("20230105092408_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,11 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -46,11 +46,11 @@ namespace DataAccess.Migrations.Ms
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("MobilePhones")
                         .HasColumnType("nvarchar(max)");
@@ -94,14 +94,32 @@ namespace DataAccess.Migrations.Ms
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MobilePhones")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("CustomerId");
 
@@ -115,22 +133,22 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("GroupName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
@@ -165,17 +183,17 @@ namespace DataAccess.Migrations.Ms
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedUserId")
+                    b.Property<int>("LastUpdatedConsumerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -194,10 +212,10 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 1,
                             Code = "tr-TR",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Name = "Türkçe",
                             isDeleted = false
                         },
@@ -205,10 +223,10 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 2,
                             Code = "en-US",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Name = "English",
                             isDeleted = false
                         });
@@ -249,11 +267,11 @@ namespace DataAccess.Migrations.Ms
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ExternalUserId")
                         .IsRequired()
@@ -266,11 +284,11 @@ namespace DataAccess.Migrations.Ms
                     b.Property<bool>("IsUsed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Provider")
                         .HasColumnType("int");
@@ -299,21 +317,21 @@ namespace DataAccess.Migrations.Ms
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -335,14 +353,32 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Piece")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("OrderId");
 
@@ -356,6 +392,21 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ProductColor")
                         .HasColumnType("nvarchar(max)");
 
@@ -364,6 +415,9 @@ namespace DataAccess.Migrations.Ms
 
                     b.Property<string>("ProductSize")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("ProductId");
 
@@ -377,11 +431,29 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsReady")
                         .HasColumnType("bit");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ProductStock")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("ProductId");
 
@@ -400,20 +472,20 @@ namespace DataAccess.Migrations.Ms
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("CreatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<int>("LangId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LastUpdatedConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LastUpdatedUserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -432,11 +504,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 1,
                             Code = "Login",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Giriş",
                             isDeleted = false
                         },
@@ -444,11 +516,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 2,
                             Code = "Email",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "E posta",
                             isDeleted = false
                         },
@@ -456,11 +528,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 3,
                             Code = "Password",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Parola",
                             isDeleted = false
                         },
@@ -468,11 +540,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 4,
                             Code = "Update",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Güncelle",
                             isDeleted = false
                         },
@@ -480,11 +552,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 5,
                             Code = "Delete",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Sil",
                             isDeleted = false
                         },
@@ -492,11 +564,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 6,
                             Code = "UsersGroups",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kullanıcının Grupları",
                             isDeleted = false
                         },
@@ -504,11 +576,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 7,
                             Code = "UsersClaims",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kullanıcının Yetkileri",
                             isDeleted = false
                         },
@@ -516,11 +588,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 8,
                             Code = "Create",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yeni",
                             isDeleted = false
                         },
@@ -528,11 +600,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 9,
                             Code = "Users",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kullanıcılar",
                             isDeleted = false
                         },
@@ -540,11 +612,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 10,
                             Code = "Groups",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Gruplar",
                             isDeleted = false
                         },
@@ -552,11 +624,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 11,
                             Code = "Login",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Login",
                             isDeleted = false
                         },
@@ -564,11 +636,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 12,
                             Code = "Email",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Email",
                             isDeleted = false
                         },
@@ -576,11 +648,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 13,
                             Code = "Password",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Password",
                             isDeleted = false
                         },
@@ -588,11 +660,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 14,
                             Code = "Update",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Update",
                             isDeleted = false
                         },
@@ -600,11 +672,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 15,
                             Code = "Delete",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Delete",
                             isDeleted = false
                         },
@@ -612,11 +684,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 16,
                             Code = "UsersGroups",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "User's Groups",
                             isDeleted = false
                         },
@@ -624,11 +696,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 17,
                             Code = "UsersClaims",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "User's Claims",
                             isDeleted = false
                         },
@@ -636,11 +708,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 18,
                             Code = "Create",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Create",
                             isDeleted = false
                         },
@@ -648,11 +720,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 19,
                             Code = "Users",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Users",
                             isDeleted = false
                         },
@@ -660,11 +732,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 20,
                             Code = "Groups",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Groups",
                             isDeleted = false
                         },
@@ -672,11 +744,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 21,
                             Code = "OperationClaim",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Operasyon Yetkileri",
                             isDeleted = false
                         },
@@ -684,11 +756,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 22,
                             Code = "OperationClaim",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Operation Claim",
                             isDeleted = false
                         },
@@ -696,11 +768,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 23,
                             Code = "Languages",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Diller",
                             isDeleted = false
                         },
@@ -708,11 +780,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 24,
                             Code = "Languages",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Languages",
                             isDeleted = false
                         },
@@ -720,11 +792,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 25,
                             Code = "TranslateWords",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Dil Çevirileri",
                             isDeleted = false
                         },
@@ -732,11 +804,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 26,
                             Code = "TranslateWords",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Translate Words",
                             isDeleted = false
                         },
@@ -744,11 +816,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 27,
                             Code = "Management",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yönetim",
                             isDeleted = false
                         },
@@ -756,11 +828,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 28,
                             Code = "Management",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Management",
                             isDeleted = false
                         },
@@ -768,11 +840,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 29,
                             Code = "AppMenu",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Uygulama",
                             isDeleted = false
                         },
@@ -780,11 +852,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 30,
                             Code = "AppMenu",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Application",
                             isDeleted = false
                         },
@@ -792,11 +864,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 31,
                             Code = "Added",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Başarıyla Eklendi.",
                             isDeleted = false
                         },
@@ -804,11 +876,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 32,
                             Code = "Added",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Successfully Added.",
                             isDeleted = false
                         },
@@ -816,11 +888,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 33,
                             Code = "Updated",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Başarıyla Güncellendi.",
                             isDeleted = false
                         },
@@ -828,11 +900,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 34,
                             Code = "Updated",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Successfully Updated.",
                             isDeleted = false
                         },
@@ -840,11 +912,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 35,
                             Code = "Deleted",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Başarıyla Silindi.",
                             isDeleted = false
                         },
@@ -852,11 +924,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 36,
                             Code = "Deleted",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Successfully Deleted.",
                             isDeleted = false
                         },
@@ -864,11 +936,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 37,
                             Code = "OperationClaimExists",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Bu operasyon izni zaten mevcut.",
                             isDeleted = false
                         },
@@ -876,11 +948,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 38,
                             Code = "OperationClaimExists",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "This operation permit already exists.",
                             isDeleted = false
                         },
@@ -888,11 +960,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 39,
                             Code = "StringLengthMustBeGreaterThanThree",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Lütfen En Az 3 Karakterden Oluşan Bir İfade Girin.",
                             isDeleted = false
                         },
@@ -900,11 +972,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 40,
                             Code = "StringLengthMustBeGreaterThanThree",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Please Enter A Phrase Of At Least 3 Characters.",
                             isDeleted = false
                         },
@@ -912,11 +984,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 41,
                             Code = "CouldNotBeVerifyCid",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kimlik No Doğrulanamadı.",
                             isDeleted = false
                         },
@@ -924,11 +996,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 42,
                             Code = "CouldNotBeVerifyCid",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Could not be verify Citizen Id",
                             isDeleted = false
                         },
@@ -936,11 +1008,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 43,
                             Code = "VerifyCid",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kimlik No Doğrulandı.",
                             isDeleted = false
                         },
@@ -948,11 +1020,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 44,
                             Code = "VerifyCid",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Verify Citizen Id",
                             isDeleted = false
                         },
@@ -960,11 +1032,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 45,
                             Code = "AuthorizationsDenied",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yetkiniz olmayan bir alana girmeye çalıştığınız tespit edildi.",
                             isDeleted = false
                         },
@@ -972,11 +1044,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 46,
                             Code = "AuthorizationsDenied",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "It has been detected that you are trying to enter an area that you do not have authorization.",
                             isDeleted = false
                         },
@@ -984,11 +1056,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 47,
                             Code = "UserNotFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kimlik Bilgileri Doğrulanamadı. Lütfen Yeni Kayıt Ekranını kullanın.",
                             isDeleted = false
                         },
@@ -996,11 +1068,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 48,
                             Code = "UserNotFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Credentials Could Not Verify. Please use the New Registration Screen.",
                             isDeleted = false
                         },
@@ -1008,11 +1080,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 49,
                             Code = "PasswordError",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kimlik Bilgileri Doğrulanamadı, Kullanıcı adı ve/veya parola hatalı.",
                             isDeleted = false
                         },
@@ -1020,11 +1092,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 50,
                             Code = "PasswordError",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Credentials Failed to Authenticate, Username and / or password incorrect.",
                             isDeleted = false
                         },
@@ -1032,11 +1104,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 51,
                             Code = "SuccessfulLogin",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Sisteme giriş başarılı.",
                             isDeleted = false
                         },
@@ -1044,11 +1116,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 52,
                             Code = "SuccessfulLogin",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Login to the system is successful.",
                             isDeleted = false
                         },
@@ -1056,11 +1128,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 53,
                             Code = "SendMobileCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Lütfen Size SMS Olarak Gönderilen Kodu Girin!",
                             isDeleted = false
                         },
@@ -1068,11 +1140,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 54,
                             Code = "SendMobileCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Please Enter The Code Sent To You By SMS!",
                             isDeleted = false
                         },
@@ -1080,11 +1152,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 55,
                             Code = "NameAlreadyExist",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Oluşturmaya Çalıştığınız Nesne Zaten Var.",
                             isDeleted = false
                         },
@@ -1092,11 +1164,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 56,
                             Code = "NameAlreadyExist",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "The Object You Are Trying To Create Already Exists.",
                             isDeleted = false
                         },
@@ -1104,11 +1176,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 57,
                             Code = "WrongCID",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Vatandaşlık No Sistemimizde Bulunamadı. Lütfen Yeni Kayıt Oluşturun!",
                             isDeleted = false
                         },
@@ -1116,11 +1188,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 58,
                             Code = "WrongCID",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Citizenship Number Not Found In Our System. Please Create New Registration!",
                             isDeleted = false
                         },
@@ -1128,11 +1200,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 59,
                             Code = "CID",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Vatandaşlık No",
                             isDeleted = false
                         },
@@ -1140,11 +1212,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 60,
                             Code = "CID",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Citizenship Number",
                             isDeleted = false
                         },
@@ -1152,11 +1224,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 61,
                             Code = "PasswordEmpty",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Parola boş olamaz!",
                             isDeleted = false
                         },
@@ -1164,11 +1236,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 62,
                             Code = "PasswordEmpty",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Password can not be empty!",
                             isDeleted = false
                         },
@@ -1176,11 +1248,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 63,
                             Code = "PasswordLength",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Minimum 8 Karakter Uzunluğunda Olmalıdır!",
                             isDeleted = false
                         },
@@ -1188,11 +1260,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 64,
                             Code = "PasswordLength",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Must be at least 8 characters long! ",
                             isDeleted = false
                         },
@@ -1200,11 +1272,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 65,
                             Code = "PasswordUppercaseLetter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "En Az 1 Büyük Harf İçermelidir!",
                             isDeleted = false
                         },
@@ -1212,11 +1284,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 66,
                             Code = "PasswordUppercaseLetter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Must Contain At Least 1 Capital Letter!",
                             isDeleted = false
                         },
@@ -1224,11 +1296,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 67,
                             Code = "PasswordLowercaseLetter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "En Az 1 Küçük Harf İçermelidir!",
                             isDeleted = false
                         },
@@ -1236,11 +1308,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 68,
                             Code = "PasswordLowercaseLetter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Must Contain At Least 1 Lowercase Letter!",
                             isDeleted = false
                         },
@@ -1248,11 +1320,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 69,
                             Code = "PasswordDigit",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "En Az 1 Rakam İçermelidir!",
                             isDeleted = false
                         },
@@ -1260,11 +1332,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 70,
                             Code = "PasswordDigit",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "It Must Contain At Least 1 Digit!",
                             isDeleted = false
                         },
@@ -1272,11 +1344,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 71,
                             Code = "PasswordSpecialCharacter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "En Az 1 Simge İçermelidir!",
                             isDeleted = false
                         },
@@ -1284,11 +1356,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 72,
                             Code = "PasswordSpecialCharacter",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Must Contain At Least 1 Symbol!",
                             isDeleted = false
                         },
@@ -1296,11 +1368,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 73,
                             Code = "SendPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yeni Parolanız E-Posta Adresinize Gönderildi.",
                             isDeleted = false
                         },
@@ -1308,11 +1380,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 74,
                             Code = "SendPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Your new password has been sent to your e-mail address.",
                             isDeleted = false
                         },
@@ -1320,11 +1392,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 75,
                             Code = "InvalidCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Geçersiz Bir Kod Girdiniz!",
                             isDeleted = false
                         },
@@ -1332,11 +1404,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 76,
                             Code = "InvalidCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "You Entered An Invalid Code!",
                             isDeleted = false
                         },
@@ -1344,11 +1416,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 77,
                             Code = "SmsServiceNotFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "SMS Servisine Ulaşılamıyor.",
                             isDeleted = false
                         },
@@ -1356,11 +1428,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 78,
                             Code = "SmsServiceNotFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Unable to Reach SMS Service.",
                             isDeleted = false
                         },
@@ -1368,11 +1440,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 79,
                             Code = "TrueButCellPhone",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Bilgiler doğru. Cep telefonu gerekiyor.",
                             isDeleted = false
                         },
@@ -1380,11 +1452,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 80,
                             Code = "TrueButCellPhone",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "The information is correct. Cell phone is required.",
                             isDeleted = false
                         },
@@ -1392,11 +1464,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 81,
                             Code = "TokenProviderException",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Token Provider boş olamaz!",
                             isDeleted = false
                         },
@@ -1404,11 +1476,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 82,
                             Code = "TokenProviderException",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Token Provider cannot be empty!",
                             isDeleted = false
                         },
@@ -1416,11 +1488,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 83,
                             Code = "Unknown",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Bilinmiyor!",
                             isDeleted = false
                         },
@@ -1428,11 +1500,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 84,
                             Code = "Unknown",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Unknown!",
                             isDeleted = false
                         },
@@ -1440,11 +1512,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 85,
                             Code = "NewPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yeni Parola:",
                             isDeleted = false
                         },
@@ -1452,11 +1524,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 86,
                             Code = "NewPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "New Password:",
                             isDeleted = false
                         },
@@ -1464,11 +1536,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 87,
                             Code = "ChangePassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Parola Değiştir",
                             isDeleted = false
                         },
@@ -1476,11 +1548,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 88,
                             Code = "ChangePassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Change Password",
                             isDeleted = false
                         },
@@ -1488,11 +1560,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 89,
                             Code = "Save",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kaydet",
                             isDeleted = false
                         },
@@ -1500,11 +1572,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 90,
                             Code = "Save",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Save",
                             isDeleted = false
                         },
@@ -1512,11 +1584,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 91,
                             Code = "GroupName",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Grup Adı",
                             isDeleted = false
                         },
@@ -1524,11 +1596,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 92,
                             Code = "GroupName",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Group Name",
                             isDeleted = false
                         },
@@ -1536,11 +1608,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 93,
                             Code = "FullName",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Tam Adı",
                             isDeleted = false
                         },
@@ -1548,11 +1620,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 94,
                             Code = "FullName",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Full Name",
                             isDeleted = false
                         },
@@ -1560,11 +1632,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 95,
                             Code = "Address",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Adres",
                             isDeleted = false
                         },
@@ -1572,11 +1644,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 96,
                             Code = "Address",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Address",
                             isDeleted = false
                         },
@@ -1584,11 +1656,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 97,
                             Code = "Notes",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Notlar",
                             isDeleted = false
                         },
@@ -1596,11 +1668,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 98,
                             Code = "Notes",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Notes",
                             isDeleted = false
                         },
@@ -1608,11 +1680,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 99,
                             Code = "ConfirmPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Parolayı Doğrula",
                             isDeleted = false
                         },
@@ -1620,11 +1692,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 100,
                             Code = "ConfirmPassword",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Confirm Password",
                             isDeleted = false
                         },
@@ -1632,11 +1704,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 101,
                             Code = "Code",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kod",
                             isDeleted = false
                         },
@@ -1644,11 +1716,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 102,
                             Code = "Code",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Code",
                             isDeleted = false
                         },
@@ -1656,11 +1728,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 103,
                             Code = "Alias",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Görünen Ad",
                             isDeleted = false
                         },
@@ -1668,11 +1740,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 104,
                             Code = "Alias",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Alias",
                             isDeleted = false
                         },
@@ -1680,11 +1752,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 105,
                             Code = "Description",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Açıklama",
                             isDeleted = false
                         },
@@ -1692,11 +1764,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 106,
                             Code = "Description",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Description",
                             isDeleted = false
                         },
@@ -1704,11 +1776,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 107,
                             Code = "Value",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Değer",
                             isDeleted = false
                         },
@@ -1716,11 +1788,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 108,
                             Code = "Value",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Value",
                             isDeleted = false
                         },
@@ -1728,11 +1800,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 109,
                             Code = "LangCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Dil Kodu",
                             isDeleted = false
                         },
@@ -1740,11 +1812,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 110,
                             Code = "LangCode",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Lang Code",
                             isDeleted = false
                         },
@@ -1752,11 +1824,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 111,
                             Code = "Name",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Adı",
                             isDeleted = false
                         },
@@ -1764,11 +1836,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 112,
                             Code = "Name",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Name",
                             isDeleted = false
                         },
@@ -1776,11 +1848,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 113,
                             Code = "MobilePhones",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Cep Telefonu",
                             isDeleted = false
                         },
@@ -1788,11 +1860,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 114,
                             Code = "MobilePhones",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Mobile Phone",
                             isDeleted = false
                         },
@@ -1800,11 +1872,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 115,
                             Code = "NoRecordsFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kayıt Bulunamadı",
                             isDeleted = false
                         },
@@ -1812,11 +1884,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 116,
                             Code = "NoRecordsFound",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "No Records Found",
                             isDeleted = false
                         },
@@ -1824,11 +1896,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 117,
                             Code = "Required",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Bu alan zorunludur!",
                             isDeleted = false
                         },
@@ -1836,11 +1908,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 118,
                             Code = "Required",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "This field is required!",
                             isDeleted = false
                         },
@@ -1848,11 +1920,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 119,
                             Code = "Permissions",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Permissions",
                             isDeleted = false
                         },
@@ -1860,11 +1932,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 120,
                             Code = "Permissions",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "İzinler",
                             isDeleted = false
                         },
@@ -1872,11 +1944,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 121,
                             Code = "GroupList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Grup Listesi",
                             isDeleted = false
                         },
@@ -1884,11 +1956,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 122,
                             Code = "GroupList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Group List",
                             isDeleted = false
                         },
@@ -1896,11 +1968,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 123,
                             Code = "GrupPermissions",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Grup Yetkileri",
                             isDeleted = false
                         },
@@ -1908,11 +1980,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 124,
                             Code = "GrupPermissions",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Grup Permissions",
                             isDeleted = false
                         },
@@ -1920,11 +1992,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 125,
                             Code = "Add",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Ekle",
                             isDeleted = false
                         },
@@ -1932,11 +2004,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 126,
                             Code = "Add",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Add",
                             isDeleted = false
                         },
@@ -1944,11 +2016,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 127,
                             Code = "UserList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Kullanıcı Listesi",
                             isDeleted = false
                         },
@@ -1956,11 +2028,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 128,
                             Code = "UserList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "User List",
                             isDeleted = false
                         },
@@ -1968,11 +2040,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 129,
                             Code = "OperationClaimList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Yetki Listesi",
                             isDeleted = false
                         },
@@ -1980,11 +2052,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 130,
                             Code = "OperationClaimList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "OperationClaim List",
                             isDeleted = false
                         },
@@ -1992,11 +2064,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 131,
                             Code = "LanguageList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Dil Listesi",
                             isDeleted = false
                         },
@@ -2004,11 +2076,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 132,
                             Code = "LanguageList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Language List",
                             isDeleted = false
                         },
@@ -2016,11 +2088,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 133,
                             Code = "TranslateList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Dil Çeviri Listesi",
                             isDeleted = false
                         },
@@ -2028,11 +2100,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 134,
                             Code = "TranslateList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Translate List",
                             isDeleted = false
                         },
@@ -2040,11 +2112,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 135,
                             Code = "LogList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "İşlem Kütüğü",
                             isDeleted = false
                         },
@@ -2052,11 +2124,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 136,
                             Code = "LogList",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "LogList",
                             isDeleted = false
                         },
@@ -2064,11 +2136,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 137,
                             Code = "DeleteConfirm",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 1,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Emin misiniz?",
                             isDeleted = false
                         },
@@ -2076,11 +2148,11 @@ namespace DataAccess.Migrations.Ms
                         {
                             Id = 138,
                             Code = "DeleteConfirm",
+                            CreatedConsumerId = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedUserId = 0,
                             LangId = 2,
+                            LastUpdatedConsumerId = 0,
                             LastUpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUpdatedUserId = 0,
                             Value = "Are you sure?",
                             isDeleted = false
                         });

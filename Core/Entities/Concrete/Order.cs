@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entities.Concrete
 {
-    public class Order:IEntity
+    public class Order:BaseEntity
     {
         public int OrderId { get; set; }
         public int CustomerId { get; set; }

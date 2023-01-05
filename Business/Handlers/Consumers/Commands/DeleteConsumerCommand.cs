@@ -13,6 +13,8 @@ namespace Business.Handlers.Consumers.Commands
     public class DeleteConsumerCommand:IRequest<IResult>
     {
         public int ConsumerId { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
+        public int LastUpdatedConsumerId { get; set; }
 
         public class DeleteConsumerCommandHandler : IRequestHandler<DeleteConsumerCommand,IResult>
         {
@@ -28,6 +30,8 @@ namespace Business.Handlers.Consumers.Commands
                 var consumerToDelete=_consumerRepository.Get(c=>c.ConsumerId==request.ConsumerId);
 
                 consumerToDelete.isDeleted = true;
+                consumerToDelete.LastUpdatedDate = request.LastUpdatedDate;
+                consumerToDelete.LastUpdatedConsumerId = request.LastUpdatedConsumerId;
                 _consumerRepository.Update(consumerToDelete);
                 await _consumerRepository.SaveChangesAsync();
                 return new SuccessResult(Messages.Deleted);

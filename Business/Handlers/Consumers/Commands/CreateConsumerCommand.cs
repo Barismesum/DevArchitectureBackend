@@ -11,56 +11,61 @@ using System.Threading;
 
 namespace Business.Handlers.Consumers.Commands
 {
-    public class CreateConsumerCommand: IRequest<IResult>
+    public class CreateConsumerCommand : IRequest<IResult>
     {
-       
-            public int ConsumerId { get; set; }
-            public string FullName { get; set; }
-            public string MobilePhones { get; set; }
-            public string Email { get; set; }
-            public int Gender { get; set; }
-            public string Password { get; set; }
-            public int RolId { get; set; }
-            public bool isDeleted { get; set; }
+
+        public int ConsumerId { get; set; }
+        public string FullName { get; set; }
+        public string MobilePhones { get; set; }
+        public string Email { get; set; }
+        public int Gender { get; set; }
+        public string Password { get; set; }
+        public int RolId { get; set; }
+        public bool isDeleted { get; set; }
+        public int CreatedConsumerId { get; set; }
+        public DateTime CreatedDate { get; set; }
+      
 
 
+        public class CreateConsumerCommandHandler : IRequestHandler<CreateConsumerCommand, IResult>
+        {
+            private readonly IConsumerRepository _consumerRepository;
 
-            public class CreateConsumerCommandHandler : IRequestHandler<CreateConsumerCommand, IResult>
+            public CreateConsumerCommandHandler(IConsumerRepository consumerRepository)
             {
-                private readonly IConsumerRepository _consumerRepository;
+                _consumerRepository = consumerRepository;
+            }
 
-                public CreateConsumerCommandHandler(IConsumerRepository consumerRepository)
+            public async Task<IResult> Handle(CreateConsumerCommand request, CancellationToken cancellationToken)
+            {
+                var isThereAnyConsumer = await _consumerRepository.GetAsync(c => c.Email == request.Email);
+
+
+                if (isThereAnyConsumer != null)
                 {
-                    _consumerRepository = consumerRepository;
+                    return new ErrorResult(Messages.NameAlreadyExist);
                 }
 
-                public async Task<IResult> Handle(CreateConsumerCommand request, CancellationToken cancellationToken)
+                var consumer = new Consumer
                 {
-                    var isThereAnyUser = await _consumerRepository.GetAsync(c => c.Email == request.Email);
+                    Email = request.Email,
+                    FullName = request.FullName,
+                    MobilePhones = request.MobilePhones,
+                    Gender = request.Gender,
+                    RolId = request.RolId,
+                    isDeleted = false,
+                    CreatedConsumerId = request.CreatedConsumerId,
+                    CreatedDate = request.CreatedDate,
+                 
+                };
+
+                _consumerRepository.Add(consumer);
+                await _consumerRepository.SaveChangesAsync();
+                return new SuccessResult(Messages.Added);
 
 
-                    if (isThereAnyUser != null)
-                    {
-                        return new ErrorResult(Messages.NameAlreadyExist);
-                    }
-
-                    var consumer = new Consumer
-                    {
-                        Email = request.Email,
-                        FullName = request.FullName,
-                        MobilePhones = request.MobilePhones,
-                        Gender = request.Gender,
-                        RolId = request.RolId,
-                        isDeleted=false,
-                    };
-
-                    _consumerRepository.Add(consumer);
-                    await _consumerRepository.SaveChangesAsync();
-                    return new SuccessResult(Messages.Added);
-
-
-                }
             }
         }
     }
+}
 
