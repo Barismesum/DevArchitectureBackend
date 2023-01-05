@@ -1,5 +1,4 @@
-﻿using Business.Handlers.Consumers.Commands;
-using Business.Handlers.Products.Commands;
+﻿using Business.Handlers.Storages.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,50 +7,50 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : BaseApiController
+    public class StoragesController : BaseApiController
     {
         /// <summary>
-        /// Add Product.
+        /// Add Storage.
         /// </summary>
-        /// <param name="createProduct"></param>
+        /// <param name="createStorage"></param>
         /// <returns></returns>
         [Consumes("application/json")]
         [Produces("application/json", "text/plain")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateProductCommand createProduct)
+        public async Task<IActionResult> Add([FromBody] CreateStorageCommand createStorage)
         {
-            return GetResponseOnlyResultMessage(await Mediator.Send(createProduct));
+            return GetResponseOnlyResultMessage(await Mediator.Send(createStorage));
         }
 
         /// <summary>
-        /// Update Product.
+        /// Update Storage.
         /// </summary>
-        /// <param name="updateProduct"></param>
+        /// <param name="updateStorage"></param>
         /// <returns></returns>
         [Consumes("application/json")]
         [Produces("application/json", "text/plain")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateProductCommand updateProduct)
+        public async Task<IActionResult> Update([FromBody] UpdateStorageCommand updateStorage)
         {
-            return GetResponseOnlyResultMessage(await Mediator.Send(updateProduct));
+            return GetResponseOnlyResultMessage(await Mediator.Send(updateStorage));
         }
         /// <summary>
-        /// Delete Product.
+        /// Delete Storage.
         /// </summary>
-        /// <param name="deleteProduct"></param>
+        /// <param name="deleteStorage"></param>
         /// <returns></returns>
         [Consumes("application/json")]
         [Produces("application/json", "text/plain")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteProductCommand deleteProduct)
+        public async Task<IActionResult> Delete([FromBody] DeleteStorageCommand deleteStorage)
         {
-            return GetResponseOnlyResultMessage(await Mediator.Send(deleteProduct));
+            return GetResponseOnlyResultMessage(await Mediator.Send(deleteStorage));
         }
     }
 }

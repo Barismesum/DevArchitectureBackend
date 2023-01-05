@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
     public class ConsumersController : BaseApiController
     {
         /// <summary>
-        /// Add User.
+        /// Add Consumer.
         /// </summary>
         /// <param name="createConsumer"></param>
         /// <returns></returns>
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Update User.
+        /// Update Consumer.
         /// </summary>
         /// <param name="updateConsumer"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             return GetResponseOnlyResultMessage(await Mediator.Send(updateConsumer));
         }
         /// <summary>
-        /// Delete User.
+        /// Delete Consumer.
         /// </summary>
         /// <param name="deleteConsumer"></param>
         /// <returns></returns>

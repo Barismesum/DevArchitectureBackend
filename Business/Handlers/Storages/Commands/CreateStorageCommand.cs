@@ -1,0 +1,58 @@
+﻿using Business.Constants;
+using Core.Entities.Concrete;
+using Core.Utilities.Results;
+using DataAccess.Abstract;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Business.Handlers.Storages.Commands
+{
+    public class CreateStorageCommand:IRequest<IResult>
+    {
+        public int ProductId { get; set; }
+        public int ProductStock { get; set; }
+        public bool IsReady { get; set; }
+        public int CreatedConsumerId { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public class CreateStorageCommandHandler:IRequestHandler<CreateStorageCommand,IResult> 
+        {
+            private readonly IStorageRepository _storageRepository;
+
+            public CreateStorageCommandHandler(IStorageRepository storageRepository)
+            {
+                _storageRepository = storageRepository;
+            }
+
+            public async Task<IResult>Handle(CreateStorageCommand request,CancellationToken cancellationToken)
+            {
+                var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.ProductId==request.ProductId);
+                
+                if (isThereAnyStorage != null)
+                {
+                    return new ErrorResult(Messages.AlreadyExist);
+                }
+                var storage = new Storage
+                {
+                    ProductId = request.ProductId,
+                    ProductStock=request.ProductStock,
+                    CreatedDate = request.CreatedDate,
+                    CreatedConsumerId = request.CreatedConsumerId,
+                    IsReady= request.IsReady,
+
+                };
+
+                _storageRepository.Add(storage);
+                await _storageRepository.SaveChangesAsync();
+                return new SuccessResult(Messages.Added);
+
+
+            }
+
+        }
+    }
+}

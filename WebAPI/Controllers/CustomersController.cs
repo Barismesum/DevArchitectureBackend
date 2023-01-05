@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
     public class CustomersController : BaseApiController
     {
         /// <summary>
-        /// Add User.
+        /// Add Customer.
         /// </summary>
         /// <param name="createCustomer"></param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Update User.
+        /// Update Customer.
         /// </summary>
         /// <param name="updateCustomer"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             return GetResponseOnlyResultMessage(await Mediator.Send(updateCustomer));
         }
         /// <summary>
-        /// Delete User.
+        /// Delete Customer.
         /// </summary>
         /// <param name="deleteCustomer"></param>
         /// <returns></returns>
