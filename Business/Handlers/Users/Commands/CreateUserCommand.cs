@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Logging;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
+using Core.Utilities.Security.Hashing;
 using DataAccess.Abstract;
 using MediatR;
 using System;
@@ -27,7 +28,7 @@ namespace Business.Handlers.Users.Commands
         public string Address { get; set; }
         public string Notes { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public int Password { get; set; }
+        public string Password { get; set; }
 
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, IResult>
@@ -50,7 +51,7 @@ namespace Business.Handlers.Users.Commands
                 {
                     return new ErrorResult(Messages.NameAlreadyExist);
                 }
-               
+                HashingHelper.CreatePasswordHash(request.Password, out var passwordSalt, out var passwordHash);
 
                 var user = new User
                 {
@@ -62,7 +63,9 @@ namespace Business.Handlers.Users.Commands
                     CitizenId = request.CitizenId,
                     Gender = request.Gender,
                     Notes = request.Notes,
-                    MobilePhones = request.MobilePhones
+                    MobilePhones = request.MobilePhones,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
                 };
 
                 _userRepository.Add(user);
