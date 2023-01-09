@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -17,7 +18,7 @@ namespace Business.Handlers.Orders.Commands
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
         public string Piece { get; set; }
-        public int CreatedConsumerId { get; set; }
+        public int CreatedUserId { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public class CreateOrderCommandHandler:IRequestHandler<CreateOrderCommand,IResult> 
@@ -28,7 +29,7 @@ namespace Business.Handlers.Orders.Commands
             {
                 _orderRepository = orderRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(CreateOrderCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyOrder=await _orderRepository.GetAsync(o=>o.OrderId==request.OrderId);
@@ -44,7 +45,7 @@ namespace Business.Handlers.Orders.Commands
                  ProductId=request.ProductId,
                  Piece=request.Piece,
                  CreatedDate=request.CreatedDate,
-                 CreatedConsumerId=request.CreatedConsumerId,
+                    CreatedUserId = request.CreatedUserId,
                 };
 
                 _orderRepository.Add(order);

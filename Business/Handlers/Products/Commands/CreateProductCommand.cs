@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,7 +19,7 @@ namespace Business.Handlers.Products.Commands
         public string ProductName { get; set; }
         public string ProductColor { get; set; }
         public string ProductSize { get; set; }
-        public int CreatedConsumerId { get; set; }
+        public int CreatedUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool isDeleted { get; set; }
 
@@ -32,7 +33,7 @@ namespace Business.Handlers.Products.Commands
             {
                 _productRepository = productRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
             {
                 var isThereAnyProduct = await _productRepository.GetAsync(p => p.ProductId == request.ProductId);
@@ -48,7 +49,7 @@ namespace Business.Handlers.Products.Commands
                     ProductName = request.ProductName,
                     ProductColor = request.ProductColor,
                     ProductSize = request.ProductSize,
-                    CreatedConsumerId=request.CreatedConsumerId,
+                    CreatedUserId = request.CreatedUserId,
                     CreatedDate = request.CreatedDate,
                     isDeleted = false,
 

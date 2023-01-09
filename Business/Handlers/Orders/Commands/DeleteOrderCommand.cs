@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -15,7 +16,7 @@ namespace Business.Handlers.Orders.Commands
     {
         public int OrderId { get; set;}
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
 
         public class DeleteOrderCommandHandler:IRequestHandler<DeleteOrderCommand,IResult>
@@ -26,14 +27,14 @@ namespace Business.Handlers.Orders.Commands
             {
                 _orderRepository = orderRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(DeleteOrderCommand request,CancellationToken cancellationToken)
             {
                 var orderToDelete = _orderRepository.Get(o => o.OrderId == request.OrderId);
 
                 orderToDelete.isDeleted = true;
                 orderToDelete.LastUpdatedDate = request.LastUpdatedDate;
-                orderToDelete.LastUpdatedConsumerId = request.LastUpdatedConsumerId;
+                orderToDelete.LastUpdatedUserId = request.LastUpdatedUserId;
                 _orderRepository.Update(orderToDelete);
                 await _orderRepository.SaveChangesAsync();
                 return new SuccessResult(Messages.Deleted);

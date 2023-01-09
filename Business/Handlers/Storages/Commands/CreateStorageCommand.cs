@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -16,7 +17,7 @@ namespace Business.Handlers.Storages.Commands
         public int ProductId { get; set; }
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }
-        public int CreatedConsumerId { get; set; }
+        public int CreatedUserId { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public class CreateStorageCommandHandler:IRequestHandler<CreateStorageCommand,IResult> 
@@ -27,7 +28,7 @@ namespace Business.Handlers.Storages.Commands
             {
                 _storageRepository = storageRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(CreateStorageCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.ProductId==request.ProductId);
@@ -41,7 +42,7 @@ namespace Business.Handlers.Storages.Commands
                     ProductId = request.ProductId,
                     ProductStock=request.ProductStock,
                     CreatedDate = request.CreatedDate,
-                    CreatedConsumerId = request.CreatedConsumerId,
+                    CreatedUserId = request.CreatedUserId,
                     IsReady= request.IsReady,
 
                 };

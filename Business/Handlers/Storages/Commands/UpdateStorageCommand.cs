@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -16,7 +17,7 @@ namespace Business.Handlers.Storages.Commands
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
         public class UpdateStorageCommandHandler:IRequestHandler<UpdateStorageCommand,IResult> 
         {
@@ -26,14 +27,14 @@ namespace Business.Handlers.Storages.Commands
             {
                 _storageRepository = storageRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(UpdateStorageCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.ProductId==request.ProductId);
 
                 isThereAnyStorage.ProductStock=request.ProductStock;
                 isThereAnyStorage.IsReady=request.IsReady;
-                isThereAnyStorage.LastUpdatedConsumerId=request.LastUpdatedConsumerId;
+                isThereAnyStorage.LastUpdatedUserId = request.LastUpdatedUserId;
                 isThereAnyStorage.LastUpdatedDate=request.LastUpdatedDate;
 
                 _storageRepository.Update(isThereAnyStorage);

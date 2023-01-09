@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,7 +20,7 @@ namespace Business.Handlers.Customers.Commands
         public string MobilePhones { get; set; }
         public string Email { get; set; }
         public bool isDeleted { get; set; }
-        public int CreatedConsumerId { get; set; }
+        public int CreatedUserId { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public class CreateCustomerCommandHandler:IRequestHandler<CreateCustomerCommand,IResult>
@@ -30,7 +31,7 @@ namespace Business.Handlers.Customers.Commands
             {
                 _customerRepository = customerRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(CreateCustomerCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.CustomerId==request.CustomerId);
@@ -49,7 +50,7 @@ namespace Business.Handlers.Customers.Commands
                     Email = request.Email,
                     isDeleted = false,
                     CreatedDate = request.CreatedDate,
-                    CreatedConsumerId=request.CreatedConsumerId,
+                    CreatedUserId=request.CreatedUserId,
 
                 };
 

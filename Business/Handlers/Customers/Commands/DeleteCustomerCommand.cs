@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -16,7 +17,7 @@ namespace Business.Handlers.Customers.Commands
     {
         public int CustomerId { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
 
 
@@ -27,14 +28,14 @@ namespace Business.Handlers.Customers.Commands
             {
                 _customerRepository = customerRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(DeleteCustomerCommand request,CancellationToken cancellationToken)
             {
                 var customerToDelete=_customerRepository.Get(c=>c.CustomerId==request.CustomerId);
 
                 customerToDelete.isDeleted = true;
                 customerToDelete.LastUpdatedDate = request.LastUpdatedDate;
-                customerToDelete.LastUpdatedConsumerId = request.LastUpdatedConsumerId;
+                customerToDelete.LastUpdatedUserId = request.LastUpdatedUserId;
                 _customerRepository.Update(customerToDelete);
                 await _customerRepository.SaveChangesAsync();
                 return new SuccessResult(Messages.Deleted);

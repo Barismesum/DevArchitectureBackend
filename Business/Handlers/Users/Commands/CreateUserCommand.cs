@@ -20,13 +20,13 @@ namespace Business.Handlers.Users.Commands
         public string FullName { get; set; }
         public string Email { get; set; }
         public string MobilePhones { get; set; }
-        public bool Status { get; set; }
+        public bool isDeleted { get; set; }
         public DateTime BirthDate { get; set; }
         public int Gender { get; set; }
-        public DateTime RecordDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Address { get; set; }
         public string Notes { get; set; }
-        public DateTime UpdateContactDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
         public int Password { get; set; }
 
 
@@ -56,7 +56,7 @@ namespace Business.Handlers.Users.Commands
                 {
                     Email = request.Email,
                     FullName = request.FullName,
-                    Status = true,
+                    isDeleted = false,
                     Address = request.Address,
                     BirthDate = request.BirthDate,
                     CitizenId = request.CitizenId,

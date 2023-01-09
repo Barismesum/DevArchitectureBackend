@@ -19,69 +19,6 @@ namespace DataAccess.Migrations.Ms
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Core.Entities.Concrete.Consumer", b =>
-                {
-                    b.Property<int>("ConsumerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CreatedConsumerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LastUpdatedConsumerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LastUpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MobilePhones")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ConsumerId");
-
-                    b.ToTable("Consumer");
-                });
-
-            modelBuilder.Entity("Core.Entities.Concrete.ConsumerRoles", b =>
-                {
-                    b.Property<int>("ConsumerRolesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RoleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ConsumerRolesId");
-
-                    b.ToTable("ConsumerRoles");
-                });
-
             modelBuilder.Entity("Core.Entities.Concrete.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -92,11 +29,11 @@ namespace DataAccess.Migrations.Ms
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CreatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
@@ -104,14 +41,11 @@ namespace DataAccess.Migrations.Ms
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LastUpdatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LastUpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MobilePhones")
                         .HasColumnType("nvarchar(max)");
@@ -121,7 +55,7 @@ namespace DataAccess.Migrations.Ms
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Core.Entities.Concrete.Group", b =>
@@ -351,23 +285,20 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CreatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LastUpdatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LastUpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Piece")
                         .HasColumnType("nvarchar(max)");
@@ -380,7 +311,7 @@ namespace DataAccess.Migrations.Ms
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Core.Entities.Concrete.Product", b =>
@@ -390,20 +321,17 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CreatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LastUpdatedConsumerId")
+                    b.Property<int>("CreatedUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LastUpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProductColor")
                         .HasColumnType("nvarchar(max)");
@@ -419,7 +347,7 @@ namespace DataAccess.Migrations.Ms
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Core.Entities.Concrete.Storage", b =>
@@ -429,23 +357,20 @@ namespace DataAccess.Migrations.Ms
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CreatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("CreatedUserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsReady")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdatedConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LastUpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductStock")
                         .HasColumnType("int");
@@ -455,7 +380,7 @@ namespace DataAccess.Migrations.Ms
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Storage");
+                    b.ToTable("Storages");
                 });
 
             modelBuilder.Entity("Core.Entities.Concrete.Translate", b =>
@@ -2173,6 +2098,9 @@ namespace DataAccess.Migrations.Ms
                     b.Property<long>("CitizenId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -2184,6 +2112,9 @@ namespace DataAccess.Migrations.Ms
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MobilePhones")
                         .HasMaxLength(30)
@@ -2199,17 +2130,11 @@ namespace DataAccess.Migrations.Ms
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<DateTime>("RecordDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
+                    b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdateContactDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("UserId");
 

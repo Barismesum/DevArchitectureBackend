@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -15,7 +16,7 @@ namespace Business.Handlers.Products.Commands
     {
         public int ProductId { get; set;}
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
         public class DeleteProductCommandHandler :IRequestHandler<DeleteProductCommand,IResult> 
         {
@@ -25,13 +26,13 @@ namespace Business.Handlers.Products.Commands
             {
                 _productRepository = productRepository;
             }
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(DeleteProductCommand request, CancellationToken cancellationToken)
             {
                 var productToDelete=_productRepository.Get(p=>p.ProductId==request.ProductId);
 
                 productToDelete.isDeleted = true;
-                productToDelete.LastUpdatedConsumerId= request.LastUpdatedConsumerId;
+                productToDelete.LastUpdatedUserId = request.LastUpdatedUserId;
                 productToDelete.LastUpdatedDate= request.LastUpdatedDate;
                 _productRepository.Update(productToDelete);
                 await _productRepository.SaveChangesAsync();

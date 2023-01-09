@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -18,7 +19,7 @@ namespace Business.Handlers.Customers.Commands
         public string MobilePhones { get; set; }
         public string Email { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
         public class UpdateCustomerCommandHandler:IRequestHandler<UpdateCustomerCommand,IResult>
         {
@@ -29,7 +30,8 @@ namespace Business.Handlers.Customers.Commands
             {
                 _customerRepository = customerRepository;
             }
-             public async Task<IResult>Handle(UpdateCustomerCommand request,CancellationToken cancellationToken)
+            [SecuredOperation(Priority = 1)]
+            public async Task<IResult>Handle(UpdateCustomerCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.CustomerId==request.CustomerId);
 
@@ -37,7 +39,7 @@ namespace Business.Handlers.Customers.Commands
                 isThereAnyCustomer.Address=request.Address;
                 isThereAnyCustomer.MobilePhones=request.MobilePhones;
                 isThereAnyCustomer.Email=request.Email;
-                isThereAnyCustomer.LastUpdatedConsumerId=request.LastUpdatedConsumerId;
+                isThereAnyCustomer.LastUpdatedUserId = request.LastUpdatedUserId;
                 isThereAnyCustomer.LastUpdatedDate=request.LastUpdatedDate;
 
                 _customerRepository.Update(isThereAnyCustomer);

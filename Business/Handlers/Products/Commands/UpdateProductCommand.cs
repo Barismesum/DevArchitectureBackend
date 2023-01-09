@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.BusinessAspects;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -17,7 +18,7 @@ namespace Business.Handlers.Products.Commands
         public string ProductColor { get; set; }
         public string ProductSize { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public int LastUpdatedConsumerId { get; set; }
+        public int LastUpdatedUserId { get; set; }
 
         public class UpdateProductCommandHandler:IRequestHandler<UpdateProductCommand,IResult> 
         {
@@ -28,7 +29,7 @@ namespace Business.Handlers.Products.Commands
                 _productRepository = productRepository;
             }
 
-
+            [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(UpdateProductCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyProduct=await _productRepository.GetAsync(p=> p.ProductId==request.ProductId);
@@ -37,7 +38,7 @@ namespace Business.Handlers.Products.Commands
                 isThereAnyProduct.ProductColor=request.ProductColor;
                 isThereAnyProduct.ProductSize=request.ProductSize;
                 isThereAnyProduct.LastUpdatedDate=request.LastUpdatedDate;
-                isThereAnyProduct.LastUpdatedConsumerId = request.LastUpdatedConsumerId;
+                isThereAnyProduct.LastUpdatedUserId = request.LastUpdatedUserId;
 
 
                 _productRepository.Update(isThereAnyProduct);
