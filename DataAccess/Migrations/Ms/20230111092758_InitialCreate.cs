@@ -11,7 +11,7 @@ namespace DataAccess.Migrations.Ms
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    customerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -25,7 +25,7 @@ namespace DataAccess.Migrations.Ms
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
+                    table.PrimaryKey("PK_Customers", x => x.customerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,8 +180,9 @@ namespace DataAccess.Migrations.Ms
                 name: "Storages",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    StorageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     ProductStock = table.Column<int>(type: "int", nullable: false),
                     IsReady = table.Column<bool>(type: "bit", nullable: false),
                     CreatedUserId = table.Column<int>(type: "int", nullable: false),
@@ -192,7 +193,7 @@ namespace DataAccess.Migrations.Ms
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Storages", x => x.ProductId);
+                    table.PrimaryKey("PK_Storages", x => x.StorageId);
                 });
 
             migrationBuilder.CreateTable(

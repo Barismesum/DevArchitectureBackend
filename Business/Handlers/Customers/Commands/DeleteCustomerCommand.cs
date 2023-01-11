@@ -31,7 +31,7 @@ namespace Business.Handlers.Customers.Commands
             [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(DeleteCustomerCommand request,CancellationToken cancellationToken)
             {
-                var customerToDelete=_customerRepository.Get(c=>c.CustomerId==request.CustomerId);
+                var customerToDelete=_customerRepository.Get(c=>c.customerId==request.CustomerId);
 
                 customerToDelete.isDeleted = true;
                 customerToDelete.LastUpdatedDate = request.LastUpdatedDate;

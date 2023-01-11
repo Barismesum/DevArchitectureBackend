@@ -13,7 +13,7 @@ namespace Business.Handlers.Storages.Commands
 {
     public class DeleteStorageCommand:IRequest<IResult>
     {
-        public int ProductId { get; set; }
+        public int StorageId { get; set; }
 
         public DateTime LastUpdatedDate { get; set; }
         public int LastUpdatedUserId { get; set; }
@@ -29,7 +29,7 @@ namespace Business.Handlers.Storages.Commands
             [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(DeleteStorageCommand request,CancellationToken cancellationToken)
             {
-                var storageToDelete = _storageRepository.Get(s => s.ProductId == request.ProductId);
+                var storageToDelete = _storageRepository.Get(s => s.StorageId == request.StorageId);
                 
                 storageToDelete.isDeleted=true;
                 storageToDelete.LastUpdatedDate= request.LastUpdatedDate;

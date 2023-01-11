@@ -6,6 +6,8 @@ namespace Core.Entities.Concrete
 {
     public class Storage:IEntity
     {
+        public int StorageId { get; set; }
+
         public int ProductId { get; set; }
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }

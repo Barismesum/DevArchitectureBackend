@@ -13,6 +13,7 @@ namespace Business.Handlers.Storages.Commands
 {
     public class UpdateStorageCommand:IRequest<IResult>
     {
+        public int StorageId { get; set; }
         public int ProductId { get; set; }
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }
@@ -30,8 +31,9 @@ namespace Business.Handlers.Storages.Commands
             [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(UpdateStorageCommand request,CancellationToken cancellationToken)
             {
-                var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.ProductId==request.ProductId);
+                var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.StorageId==request.StorageId);
 
+                isThereAnyStorage.ProductId=request.ProductId;
                 isThereAnyStorage.ProductStock=request.ProductStock;
                 isThereAnyStorage.IsReady=request.IsReady;
                 isThereAnyStorage.LastUpdatedUserId = request.LastUpdatedUserId;

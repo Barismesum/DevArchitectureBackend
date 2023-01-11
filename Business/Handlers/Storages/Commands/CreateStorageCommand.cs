@@ -14,6 +14,7 @@ namespace Business.Handlers.Storages.Commands
 {
     public class CreateStorageCommand:IRequest<IResult>
     {
+        public int StorageId { get; set; }
         public int ProductId { get; set; }
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }
@@ -39,6 +40,7 @@ namespace Business.Handlers.Storages.Commands
                 }
                 var storage = new Storage
                 {
+                    StorageId = request.StorageId,
                     ProductId = request.ProductId,
                     ProductStock=request.ProductStock,
                     CreatedDate = request.CreatedDate,

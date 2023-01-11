@@ -21,7 +21,7 @@ namespace DataAccess.Migrations.Ms
 
             modelBuilder.Entity("Core.Entities.Concrete.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("customerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -53,7 +53,7 @@ namespace DataAccess.Migrations.Ms
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("customerId");
 
                     b.ToTable("Customers");
                 });
@@ -352,7 +352,7 @@ namespace DataAccess.Migrations.Ms
 
             modelBuilder.Entity("Core.Entities.Concrete.Storage", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("StorageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -372,13 +372,16 @@ namespace DataAccess.Migrations.Ms
                     b.Property<int>("LastUpdatedUserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductStock")
                         .HasColumnType("int");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("StorageId");
 
                     b.ToTable("Storages");
                 });

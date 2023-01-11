@@ -34,7 +34,7 @@ namespace Business.Handlers.Customers.Commands
             [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(CreateCustomerCommand request,CancellationToken cancellationToken)
             {
-                var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.CustomerId==request.CustomerId);
+                var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.customerId==request.CustomerId);
 
                 if(isThereAnyCustomer!=null)
                 {
@@ -44,7 +44,7 @@ namespace Business.Handlers.Customers.Commands
                 var customer = new Customer
                 {
                     CustomerName = request.CustomerName,
-                    CustomerId = request.CustomerId,
+                    customerId = request.CustomerId,
                     Address = request.Address,
                     MobilePhones = request.MobilePhones,
                     Email = request.Email,

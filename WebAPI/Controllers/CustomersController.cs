@@ -1,8 +1,12 @@
 ﻿
 using Business.Handlers.Customers.Commands;
+using Business.Handlers.Customers.Queries;
+using Business.Handlers.Languages.Queries;
+using Core.Entities.Concrete;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -54,5 +58,36 @@ namespace WebAPI.Controllers
         {
             return GetResponseOnlyResultMessage(await Mediator.Send(deleteCustomer));
         }
+
+        /// <summary>
+        /// List Customers
+        /// </summary>
+        /// <remarks>bla bla bla Customers</remarks>
+        /// <return>Customers List</return>
+        /// <response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Customer>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetList()
+        {
+            return GetResponseOnlyResultData(await Mediator.Send(new GetCustomersQuery()));
+        }
+
+        /// <summary>
+        /// It brings the details according to its id.
+        /// </summary>
+        /// <remarks>bla bla bla </remarks>
+        /// <return>Customer List</return>
+        /// <response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Customer))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("getbyid")]
+        public async Task<IActionResult> GetById(int customerId)
+        {
+            return GetResponseOnlyResultData(await Mediator.Send(new GetCustomerQuery { customerId = customerId }));
+        }
+
     }
 }

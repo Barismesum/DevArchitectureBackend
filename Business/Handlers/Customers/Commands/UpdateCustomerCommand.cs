@@ -33,7 +33,7 @@ namespace Business.Handlers.Customers.Commands
             [SecuredOperation(Priority = 1)]
             public async Task<IResult>Handle(UpdateCustomerCommand request,CancellationToken cancellationToken)
             {
-                var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.CustomerId==request.CustomerId);
+                var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.customerId==request.CustomerId);
 
                 isThereAnyCustomer.CustomerName=request.CustomerName;
                 isThereAnyCustomer.Address=request.Address;

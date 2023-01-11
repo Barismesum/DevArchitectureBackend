@@ -1,7 +1,11 @@
 ﻿
+
 using Business.Handlers.Products.Commands;
+using Business.Handlers.Products.Queries;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -53,5 +57,38 @@ namespace WebAPI.Controllers
         {
             return GetResponseOnlyResultMessage(await Mediator.Send(deleteProduct));
         }
+
+        /// <summary>
+        /// List Products
+        /// </summary>
+        /// <remarks>bla bla bla Products</remarks>
+        /// <return>Products List</return>
+        /// <response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Product>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetList()
+        {
+            return GetResponseOnlyResultData(await Mediator.Send(new GetProductsQuery()));
+        }
+
+        /// <summary>
+        /// It brings the details according to its id.
+        /// </summary>
+        /// <remarks>bla bla bla </remarks>
+        /// <return>Product List</return>
+        /// <response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("getbyid")]
+        public async Task<IActionResult> GetById(int productsId)
+        {
+            return GetResponseOnlyResultData(await Mediator.Send(new GetProductQuery { ProductId = productsId }));
+        }
+
+
+
     }
 }
