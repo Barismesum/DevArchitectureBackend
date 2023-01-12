@@ -1,5 +1,8 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -30,6 +33,8 @@ namespace Business.Handlers.Storages.Commands
                 _storageRepository = storageRepository;
             }
             [SecuredOperation(Priority = 1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IResult>Handle(CreateStorageCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyStorage=await _storageRepository.GetAsync(s=>s.ProductId==request.ProductId);

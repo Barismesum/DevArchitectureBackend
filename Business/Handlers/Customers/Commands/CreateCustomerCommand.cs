@@ -1,5 +1,8 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -32,6 +35,8 @@ namespace Business.Handlers.Customers.Commands
                 _customerRepository = customerRepository;
             }
             [SecuredOperation(Priority = 1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IResult>Handle(CreateCustomerCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyCustomer=await _customerRepository.GetAsync(c=>c.customerId==request.CustomerId);

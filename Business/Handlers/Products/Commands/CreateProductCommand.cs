@@ -1,5 +1,8 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -34,6 +37,8 @@ namespace Business.Handlers.Products.Commands
                 _productRepository = productRepository;
             }
             [SecuredOperation(Priority = 1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
             {
                 var isThereAnyProduct = await _productRepository.GetAsync(p => p.ProductId == request.ProductId);

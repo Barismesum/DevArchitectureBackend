@@ -1,5 +1,8 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -27,6 +30,8 @@ namespace Business.Handlers.Storages.Commands
                 _storageRepository = storageRepository;
             }
             [SecuredOperation(Priority = 1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IResult>Handle(DeleteStorageCommand request,CancellationToken cancellationToken)
             {
                 var storageToDelete = _storageRepository.Get(s => s.StorageId == request.StorageId);

@@ -1,4 +1,7 @@
 ﻿using Business.BusinessAspects;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,6 +29,8 @@ namespace Business.Handlers.Products.Queries
             }
 
             [SecuredOperation(Priority=1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IDataResult<IEnumerable<Product>>>Handle(GetProductsQuery request,CancellationToken cancellationToken)
             {
                 return new SuccessDataResult<IEnumerable<Product>>(await _productRepository.GetListAsync());

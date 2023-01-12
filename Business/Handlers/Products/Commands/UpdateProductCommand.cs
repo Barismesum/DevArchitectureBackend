@@ -1,5 +1,8 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using MediatR;
@@ -30,6 +33,8 @@ namespace Business.Handlers.Products.Commands
             }
 
             [SecuredOperation(Priority = 1)]
+            [CacheRemoveAspect()]
+            [LogAspect(typeof(FileLogger))]
             public async Task<IResult>Handle(UpdateProductCommand request,CancellationToken cancellationToken)
             {
                 var isThereAnyProduct=await _productRepository.GetAsync(p=> p.ProductId==request.ProductId);
