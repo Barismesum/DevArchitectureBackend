@@ -2136,7 +2136,7 @@ namespace DataAccess.Migrations.Ms
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isDeleted")
+                    b.Property<bool>("status")
                         .HasColumnType("bit");
 
                     b.HasKey("UserId");

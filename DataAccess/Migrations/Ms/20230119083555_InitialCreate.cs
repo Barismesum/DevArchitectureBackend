@@ -251,7 +251,7 @@ namespace DataAccess.Migrations.Ms
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MobilePhones = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    status = table.Column<bool>(type: "bit", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
