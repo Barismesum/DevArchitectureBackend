@@ -6,6 +6,9 @@ namespace Core.Entities.Concrete
 {
     public class Customer:IEntity
     {
+        public Customer() {
+            LastUpdatedDate = CreatedDate = DateTime.Now;
+        }
         public string CustomerName { get; set; }
         public int customerId { get; set; }
         public string Address { get; set; }

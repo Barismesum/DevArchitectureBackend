@@ -6,6 +6,11 @@ namespace Core.Entities.Concrete
 {
     public class Product:IEntity
     {
+        public Product()
+        {
+            LastUpdatedDate = CreatedDate = DateTime.Now;
+
+        }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductColor { get; set; }

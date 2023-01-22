@@ -6,6 +6,10 @@ namespace Core.Entities.Concrete
 {
     public class Order:IEntity
     {
+        public Order()
+        {
+            LastUpdatedDate=CreatedDate=DateTime.Now; 
+        }
         public int OrderId { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }

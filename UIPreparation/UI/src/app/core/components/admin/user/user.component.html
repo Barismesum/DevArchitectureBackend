@@ -124,7 +124,7 @@
         <button type="button" #closeButton class="close" data-dismiss="modal" aria-label="Close"
           (click)="clearFormGroup(userAddForm)"><span aria-hidden="true">&times;</span></button>
         <h4 class="margin-top">
-          {{'UserForm'| translate}}
+          {{'Add User'| translate}}
         </h4>
         <div class="separator"></div>
         <form *ngIf="userAddForm" [formGroup]="userAddForm" (ngSubmit)="save()">

@@ -23,6 +23,7 @@ namespace Business.Handlers.Orders.Commands
         public string Piece { get; set; }
         public int CreatedUserId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public bool isDeleted { get; set; }
 
         public class CreateOrderCommandHandler:IRequestHandler<CreateOrderCommand,IResult> 
         {
@@ -51,6 +52,7 @@ namespace Business.Handlers.Orders.Commands
                  Piece=request.Piece,
                  CreatedDate=request.CreatedDate,
                     CreatedUserId = request.CreatedUserId,
+                    isDeleted = false
                 };
 
                 _orderRepository.Add(order);

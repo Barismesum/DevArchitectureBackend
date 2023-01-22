@@ -82,9 +82,9 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Storage))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpGet("getbyid")]
-        public async Task<IActionResult> GetById(int productsId)
+        public async Task<IActionResult> GetById(int storagesId)
         {
-            return GetResponseOnlyResultData(await Mediator.Send(new GetStorageQuery { ProductId = productsId }));
+            return GetResponseOnlyResultData(await Mediator.Send(new GetStorageQuery { StorageId = storagesId }));
         }
 
 
