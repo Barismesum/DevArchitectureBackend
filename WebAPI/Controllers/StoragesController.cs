@@ -86,7 +86,20 @@ namespace WebAPI.Controllers
         {
             return GetResponseOnlyResultData(await Mediator.Send(new GetStorageQuery { StorageId = storagesId }));
         }
-
+        /// <summary>
+        /// List Product storageDto
+        /// </summary>
+        /// <remarks>bla bla bla Product Storage</remarks>
+        /// <return>Product Storage List</return>
+        /// <response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Storage>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("getstoragelistdto")]
+        public async Task<IActionResult> GetStorageListDto()
+        {
+            return GetResponseOnlyResultData(await Mediator.Send(new GetStorageListDtoQuery()));
+        }
 
     }
 }

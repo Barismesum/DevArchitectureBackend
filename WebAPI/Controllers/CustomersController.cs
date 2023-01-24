@@ -101,7 +101,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SelectionItem>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [HttpGet("getcustomerlookup")]
-        public async Task<IActionResult> GetUserLookup()
+        public async Task<IActionResult> GetCustomerLookup()
         {
             return GetResponseOnlyResultData(await Mediator.Send(new GetCustomerLookupQuery()));
         }

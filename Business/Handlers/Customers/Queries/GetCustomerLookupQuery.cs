@@ -20,9 +20,11 @@ namespace Business.Handlers.Customers.Queries
         public class GetCustomerLookupQueryHandler : IRequestHandler<GetCustomerLookupQuery, IDataResult<IEnumerable<SelectionItem>>>
         {
             private readonly ICustomerRepository _customerRepository;
-            public GetCustomerLookupQueryHandler(ICustomerRepository customerRepository)
+            private readonly IMediator _mediator;
+            public GetCustomerLookupQueryHandler(ICustomerRepository customerRepository, IMediator mediator)
             {
                 _customerRepository = customerRepository;
+                _mediator = mediator;
 
             }
 
@@ -32,9 +34,7 @@ namespace Business.Handlers.Customers.Queries
 
             public async Task<IDataResult<IEnumerable<SelectionItem>>> Handle(GetCustomerLookupQuery request,CancellationToken cancellationToken)
             {
-                var list = await _customerRepository.GetListAsync(x => x.isDeleted);
-                var customerLookup = list.Select(x => new SelectionItem { Id = x.customerId.ToString(), Label = x.CustomerName });
-                return new SuccessDataResult<IEnumerable<SelectionItem>>(customerLookup);
+              return new SuccessDataResult<IEnumerable<SelectionItem>>( await _customerRepository.GetCustomersLookUp());
             }
         }
     }
