@@ -29,6 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
                                 productName=prdt.ProductName,
                                 customerName=cstm.CustomerName,
                                 piece=ordr.Piece,
+                                isDeleted=ordr.isDeleted,
 
 
                             }).ToListAsync();

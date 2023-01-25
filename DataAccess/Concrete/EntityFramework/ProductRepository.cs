@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
         public async Task<List<SelectionItem>> GetProductsLookUp()
         {
             var lookUp = await (from entity in Context.Products
+                                where !(entity.isDeleted)
                                 select new SelectionItem()
                                 {
                                     Id = entity.ProductId,

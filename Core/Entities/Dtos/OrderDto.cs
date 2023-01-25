@@ -10,5 +10,7 @@ namespace Core.Entities.Dtos
         public string productName { get; set; }
         public string customerName { get; set; }
         public string piece { get; set; }
+
+        public bool isDeleted { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  productName = prd.ProductName,
                                  ProductStock = str.ProductStock,
                                  IsReady = str.IsReady,
+                                 isDeleted=str.isDeleted
                              }).ToListAsync();
 
             return list;

@@ -10,6 +10,7 @@ namespace Core.Entities.Dtos
         public string productName { get; set; }
         public int ProductStock { get; set; }
         public bool IsReady { get; set; }
+        public bool isDeleted { get; set; }
 
 
     }
