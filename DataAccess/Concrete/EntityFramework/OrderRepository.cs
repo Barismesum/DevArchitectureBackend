@@ -22,7 +22,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             var list=await(from ord in Context.Orders
                            join prd in Context.Products on ord.ProductId equals prd.ProductId
-                           join cst in Context.Customers on prd.ProductId equals cst.customerId
+                           join cst in Context.Customers on ord.CustomerId equals cst.customerId
                            select new OrderDto()
                            {
                                orderId=ord.OrderId,
