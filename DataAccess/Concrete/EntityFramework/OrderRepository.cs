@@ -20,24 +20,21 @@ namespace DataAccess.Concrete.EntityFramework
 
         public async Task<List<OrderDto>> GetOrderDto()
         {
-            var list=await (from ordr in Context.Orders 
-                            join prdt in Context.Products on ordr.ProductId equals prdt.ProductId
-                            join cstm in Context.Customers on prdt.ProductId equals cstm.customerId
-                            select new OrderDto()
-                            {   
-                                orderId= ordr.OrderId,
-                                productName=prdt.ProductName,
-                                customerName=cstm.CustomerName,
-                                piece=ordr.Piece,
-                                isDeleted=ordr.isDeleted,
+            var list=await(from ord in Context.Orders
+                           join prd in Context.Products on ord.ProductId equals prd.ProductId
+                           join cst in Context.Customers on prd.ProductId equals cst.customerId
+                           select new OrderDto()
+                           {
+                               orderId=ord.OrderId,
+                               productName=prd.ProductName,
+                               customerName=cst.CustomerName,
+                               piece=ord.Piece,
+                               isDeleted=ord.isDeleted
 
+                           }).ToListAsync();
 
-                            }).ToListAsync();
-
-
-
-          return list;
-   
+            return list;
+                           
         }
     }
 }

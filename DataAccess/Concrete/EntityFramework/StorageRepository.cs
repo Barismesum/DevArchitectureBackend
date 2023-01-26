@@ -33,5 +33,18 @@ namespace DataAccess.Concrete.EntityFramework
 
             return list;
         }
+
+        public  async Task<List<SelectionItem>> GetStoragesLookUp()
+        {
+            var lookUp = await(from entity in Context.Storages
+                               join prd in Context.Products on entity.ProductId equals prd.ProductId
+                               where !(entity.isDeleted)
+                               select new SelectionItem()
+                               {
+                                   Id = entity.ProductId,
+                                   Label = prd.ProductName
+                               }).ToListAsync();
+            return lookUp;
+        }
     }
 }

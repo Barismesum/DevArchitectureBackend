@@ -11,6 +11,7 @@ namespace DataAccess.Abstract
     public interface IStorageRepository:IEntityRepository<Storage>
     {
         Task<List<StorageDto>> GetStorageDto();
+        Task<List<SelectionItem>> GetStoragesLookUp();
 
     }
 }

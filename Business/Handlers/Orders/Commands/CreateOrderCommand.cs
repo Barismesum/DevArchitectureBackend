@@ -30,11 +30,11 @@ namespace Business.Handlers.Orders.Commands
             private readonly IOrderRepository _orderRepository;
             private readonly IStorageRepository _storageRepository;
 
-            public CreateOrderCommandHandler(IOrderRepository orderRepository,IStorageRepository storageRepository )
+            public CreateOrderCommandHandler(IOrderRepository orderRepository, IStorageRepository storageRepository)
             {
                 _orderRepository = orderRepository;
                 _storageRepository = storageRepository;
-               
+
             }
             [SecuredOperation(Priority = 1)]
             [CacheRemoveAspect()]
@@ -44,22 +44,23 @@ namespace Business.Handlers.Orders.Commands
                 var isThereAnyOrder=await _orderRepository.GetAsync(o=>o.OrderId==request.OrderId);
                 var isThereAnyStorage = await _storageRepository.GetAsync(p => p.ProductId == request.ProductId);
 
-                if(isThereAnyOrder !=null)
+                if (isThereAnyOrder !=null)
                 {
                     return new ErrorResult(Messages.AlreadyExist);
                 }
 
-                if(Convert.ToInt32(isThereAnyStorage.ProductStock) < Convert.ToInt32(request.Piece))
+                if (isThereAnyStorage.ProductStock < Convert.ToInt32(request.Piece))
                 {
                     return new ErrorResult(Messages.InvalidStock);
-
                 }
                 else
                 {
                     isThereAnyStorage.ProductStock -= Convert.ToInt32(request.Piece);
-                   
                 }
-               
+
+
+
+
                 var order = new Order
                 {
                  CustomerId=request.CustomerId,
@@ -71,6 +72,7 @@ namespace Business.Handlers.Orders.Commands
                 };
 
                 _orderRepository.Add(order);
+                await _storageRepository.SaveChangesAsync();
                 await _orderRepository.SaveChangesAsync();
                 return new SuccessResult(Messages.Added);
 
